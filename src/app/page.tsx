@@ -3,8 +3,21 @@ import '../styles/global.scss';
 import styles from './home.module.scss';
 import { Header } from './components/Header';
 import { SubscribeButton } from './components/SubscribeButton';
+import { stripe } from '@/services';
 
-export default function Home() {
+export const revalidate = 60 * 60 * 24; // 24 hours
+
+export default async function Home() {
+  const price = await stripe.prices.retrieve('price_1NHuaSEbOrbprdlSskDY3nA3');
+
+  const product = {
+    priceId: price.id,
+    amount: new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    }).format((price.unit_amount as number) / 100),
+  };
+
   return (
     <>
       <Header />
@@ -16,9 +29,9 @@ export default function Home() {
           </h1>
           <p>
             Get access to all the publications <br />
-            <span>for $9.90 month</span>
+            <span>for {product.amount} month</span>
           </p>
-          <SubscribeButton />
+          <SubscribeButton priceId={product.priceId} />
         </section>
         <Image
           src="/images/avatar.svg"
