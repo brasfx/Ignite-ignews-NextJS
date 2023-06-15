@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import '../styles/global.scss';
 import styles from './home.module.scss';
-import { Header } from './components/Header';
+
 import { SubscribeButton } from './components/SubscribeButton';
 import { stripe } from '@/services';
 
@@ -20,7 +20,6 @@ export default async function Home() {
 
   return (
     <>
-      <Header />
       <main className={styles.contentContainer}>
         <section className={styles.hero}>
           <span> 👏 Hey, welcome</span>

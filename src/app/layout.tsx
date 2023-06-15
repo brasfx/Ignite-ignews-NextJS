@@ -1,4 +1,6 @@
 import { Inter, Roboto } from 'next/font/google';
+import { Header } from './components/Header';
+import { NextAuthProvider } from './providers';
 
 const roboto = Roboto({
   weight: ['400', '700'],
@@ -22,7 +24,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <link rel="icon" href="/favicon.png" sizes="any" />
-      <body className={roboto.className}>{children}</body>
+      <body className={roboto.className}>
+        <NextAuthProvider>
+          <Header />
+          {children}
+        </NextAuthProvider>
+      </body>
     </html>
   );
 }
