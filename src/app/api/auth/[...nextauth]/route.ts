@@ -15,7 +15,7 @@ export const authOptions = {
     // ...add more providers here
   ],
   callbacks: {
-    async signIn({ user }) {
+    async signIn({ user }: any) {
       const { email } = user;
       try {
         await fauna.query(
@@ -32,6 +32,14 @@ export const authOptions = {
         return false;
       }
     },
+    // async jwt({ token, user }: any) {
+    //   return { ...token, ...user };
+    // },
+
+    // async session({ session, token }: any) {
+    //   session.user = token as any;
+    //   return session;
+    // },
   },
 };
 
