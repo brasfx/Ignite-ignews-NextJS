@@ -1,10 +1,10 @@
 import { stripe } from '@/services';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { NextResponse, NextRequest } from 'next/server';
-import { getSession } from 'next-auth/react';
+import { getServerSession } from 'next-auth';
 
-export async function POST(request: NextApiRequest, res: NextApiResponse) {
-  const session = await getSession();
+export async function POST(req: NextApiRequest, res: NextApiResponse) {
+  const session = await getServerSession();
 
   const stripeCustomer = await stripe.customers.create({
     email: session?.user?.email as string,
