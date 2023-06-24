@@ -5,7 +5,7 @@ import styles from './home.module.scss';
 import { SubscribeButton } from './components/SubscribeButton';
 import { stripe } from '@/services';
 
-export const revalidate = 60 * 60 * 24; // 24 hours
+export const revalidate = 86400; // 24 hours
 
 export default async function Home() {
   const price = await stripe.prices.retrieve('price_1NHuaSEbOrbprdlSskDY3nA3');
