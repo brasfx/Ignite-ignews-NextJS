@@ -1,6 +1,7 @@
 import { Inter, Roboto } from 'next/font/google';
 import { Header } from './components/Header';
 import { NextAuthProvider } from './providers';
+import '../styles/global.scss';
 
 const roboto = Roboto({
   weight: ['400', '700'],
