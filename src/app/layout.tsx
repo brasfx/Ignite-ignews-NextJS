@@ -1,6 +1,8 @@
 import { Inter, Roboto } from 'next/font/google';
 import { Header } from './components/Header';
 import { NextAuthProvider } from './providers';
+import { PrismicPreview } from '@prismicio/next';
+import { repositoryName } from '../prismicio';
 import '../styles/global.scss';
 
 const roboto = Roboto({
@@ -29,6 +31,7 @@ export default function RootLayout({
         <NextAuthProvider>
           <Header />
           {children}
+          <PrismicPreview repositoryName={repositoryName} />
         </NextAuthProvider>
       </body>
     </html>

@@ -1,0 +1,5 @@
+{
+  "repositoryName": "rockseat-ignews",
+  "adapter": "@slicemachine/adapter-next",
+  "libraries": ["./slices"]
+}
