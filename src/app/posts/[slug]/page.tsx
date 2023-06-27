@@ -1,35 +1,16 @@
+'use client';
 import { NextApiRequest } from 'next';
 import { useSession } from 'next-auth/react';
 import { createClient } from '../../../prismicio';
 import * as prismicH from '@prismicio/helpers';
-import Head from 'next/head';
 import styles from './post.module.scss';
-import { getServerSession } from 'next-auth';
-
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  const { slug } = params;
-
-  const convertSlugToText = (slug: string) => {
-    const words = slug.split('-');
-
-    const title = words
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-      .join(' ');
-
-    return title;
-  };
-
-  return {
-    title: `${convertSlugToText(slug)} | ig.news`,
-  };
-}
 
 export default async function Post({ params }: { params: { slug: string } }) {
-  //const session = await getServerSession();
+  const { data: session, status } = await useSession();
+
+  if (!session?.activeSubscription) {
+    window.location.replace('/');
+  }
 
   const { slug } = params;
 
