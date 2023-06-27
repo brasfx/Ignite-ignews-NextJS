@@ -1,11 +1,4 @@
-import { usePathname } from 'next/navigation';
-
-export const metadata = {
-  title: `Post | Ignews`,
-  description: 'Ignews by Rockseat',
-};
-
-export default function DashboardLayout({
+export default function PostLayout({
   children,
 }: {
   children: React.ReactNode;

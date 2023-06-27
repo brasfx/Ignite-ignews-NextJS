@@ -28,21 +28,16 @@ export default async function Posts() {
   });
 
   return (
-    <>
-      <Head>
-        <title>Posts | Ignews</title>
-      </Head>
-      <main className={styles.container}>
-        <div className={styles.posts}>
-          {posts.map((post) => (
-            <Link href={`/posts/${post.slug}`} key={post.slug}>
-              <time>{post.updatedAt}</time>
-              <strong>{post.title}</strong>
-              <p>{post.excerpt}</p>
-            </Link>
-          ))}
-        </div>
-      </main>
-    </>
+    <main className={styles.container}>
+      <div className={styles.posts}>
+        {posts.map((post) => (
+          <Link href={`/posts/${post.slug}`} key={post.slug}>
+            <time>{post.updatedAt}</time>
+            <strong>{post.title}</strong>
+            <p>{post.excerpt}</p>
+          </Link>
+        ))}
+      </div>
+    </main>
   );
 }
