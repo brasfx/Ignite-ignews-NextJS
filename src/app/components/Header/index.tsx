@@ -1,8 +1,10 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import styles from './styles.module.scss';
 import { SignInButton } from '../SignInButton';
+import { ActiveLink } from '../ActiveLink';
 
 export function Header() {
   return (
@@ -10,8 +12,12 @@ export function Header() {
       <div className={styles.headerContent}>
         <Image src="images/logo.svg" alt="logo" width={110} height={31} />
         <nav>
-          <a className={styles.active}>Home</a>
-          <a className={styles.active}>Posts</a>
+          <ActiveLink href="/" activeClassName={styles.active}>
+            Home
+          </ActiveLink>
+          <ActiveLink href="/posts" activeClassName={styles.active}>
+            Posts
+          </ActiveLink>
         </nav>
         <SignInButton />
       </div>
