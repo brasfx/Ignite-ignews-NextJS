@@ -25,13 +25,14 @@ interface ParamsProsps {
 }
 
 export default async function PostPreview({ params }: ParamsProsps) {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const { slug } = params;
+  console.log('status: ' + status);
 
   const router = useRouter();
 
   useEffect(() => {
-    if (session?.activeSubscription) {
+    if (session?.activeSubscription && status === 'authenticated') {
       router.push(`/posts/${slug}`);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

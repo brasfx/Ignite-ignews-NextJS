@@ -4,6 +4,7 @@ import { useSession } from 'next-auth/react';
 import { createClient } from '../../../prismicio';
 import * as prismicH from '@prismicio/helpers';
 import styles from './post.module.scss';
+import { useEffect } from 'react';
 
 interface ParamsProsps {
   params: {
@@ -14,8 +15,12 @@ interface ParamsProsps {
 export default async function Post({ params }: ParamsProsps) {
   const { data: session, status } = await useSession();
 
-  if (!session?.activeSubscription) {
-    window.location.replace('/');
+  if (
+    !session?.activeSubscription &&
+    status !== 'authenticated' &&
+    status !== 'loading'
+  ) {
+    window?.location?.replace('/');
   }
 
   const { slug } = params;
