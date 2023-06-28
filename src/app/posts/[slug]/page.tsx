@@ -5,7 +5,13 @@ import { createClient } from '../../../prismicio';
 import * as prismicH from '@prismicio/helpers';
 import styles from './post.module.scss';
 
-export default async function Post({ params }: { params: { slug: string } }) {
+interface ParamsProsps {
+  params: {
+    slug: string | null;
+  };
+}
+
+export default async function Post({ params }: ParamsProsps) {
   const { data: session, status } = await useSession();
 
   if (!session?.activeSubscription) {
