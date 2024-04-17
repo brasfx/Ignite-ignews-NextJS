@@ -24,10 +24,11 @@ interface ParamsProsps {
   };
 }
 
+export const revalidate = 1800; // 30 minutos
+
 export default async function PostPreview({ params }: ParamsProsps) {
   const { data: session, status } = useSession();
   const { slug } = params;
-  console.log('status: ' + status);
 
   const router = useRouter();
 
